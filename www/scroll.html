@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World</title>
+    <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="author" content="Abdul Aleem Khan">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+
+        <script src="js/jquery.mobile.custom.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+  <style>
+  div.demo {
+    margin: 0px;
+    padding: 0px;
+    padding-top:5px;
+    padding-bottom: 5px;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    overflow: auto;
+  }
+
+  .option{
+  	display:inline-block;
+  	line-height: 24px;
+  	font-size: 24px;
+  	text-align:center;
+  }
+  </style>
+  <script src="js/jquery.min.js"></script>
+</head>
+<body>
+ <div>
+
+<div id="circle" style="position:absolute; top:0px; margin:0 auto; width:40px; height:40px; border:1px solid cyan; border-radius:50%; z-index:500;"></div>
+<div id="demo" class="demo">
+
+<div id="num" style="position:relative; top:0px;left:0px;">
+	<div class="option">1</div>
+	<div class="option">2</div>
+	<div class="option">3</div>
+	<div class="option">4</div>
+	<div class="option">5</div>
+	<div class="option">6</div>
+	<div class="option">7</div>
+	<div class="option">8</div>
+	<div class="option">9</div>
+	<div class="option" style="margin-right:0px;">10</div>
+
+</div>
+ </div>
+</div>
+<script>
+	var animateFlag = false;
+	var value_selected = 0;
+	
+
+	/*
+	function getScrollDest(e){
+		var cur = $( "#demo" ).scrollLeft( );
+		var st = 20;
+		var bw = 80;
+		var half = 20;
+		console.log((bw+half) +":"+ (2*bw-half));
+		if(cur < bw-half){
+			return st+0*bw;
+		}else if(cur >= bw-half && cur < bw+half){
+			return st+1*bw;
+		}else if(cur >= 2*bw-half && cur < 2*bw+half){
+			return st+2*bw;
+		}else if(cur >= 3*bw-half && cur < 3*bw+half){
+			return st+3*bw;
+		}else if(cur >= 4*bw-half && cur < 4*bw+half){
+			return st+4*bw;
+		}else if(cur >= 5*bw-half && cur < 5*bw+half){
+			return st+5*bw;
+		}else if(cur >= 6*bw-half && cur < 6*bw+half){
+			return st+6*bw;
+		}else if(cur >= 7*bw-half && cur < 7*bw+half){
+			return st+7*bw;
+		}else if(cur >= 8*bw-half && cur < 8*bw+half){
+			return st+8*bw;
+		}else if(cur >= 9*bw-half){
+			return st+9*bw;
+		}
+	}*/
+	
+	$(document).ready(function(){
+		var a = $("#demo").width() ;
+		b=a/2-20;
+		//$("#num").css({'padding-left':a/2 +'px', 'padding-right':a/2 +'px', });
+		setSlector($("#num"), 10, 40, 50, a);
+		$("#circle").css({"left": b+"px"});
+		console.log("hello: "+b);
+
+		$( "#demo" ).scrollLeft( 20 );
+		//console.log($( "#demo" ).scrollLeft( ));
+		$(function(){
+			$("#demo").scroll(function(){
+				
+				console.log("Scroll Position: " + $( "#demo" ).scrollLeft( ));
+				clearTimeout( $.data( $("#demo"), "scrollCheck" ) );
+		    			$.data( $("#demo"), "scrollCheck", setTimeout(function() {
+	    				if(!animateFlag){
+							console.log("Stopped scrolling!");
+							var pos = getScrollDest($( "#demo" ), 10, 40, 50);
+							$( "#demo" ).animate( {scrollLeft:pos},  {duration:200, complete: function(){
+								console.log("ready to animate");
+
+								clearTimeout( $.data( $("#demo"), "scrollCheck" ) );
+		    					animateFlag = false;
+							}});
+							animateFlag = true;
+
+						}
+	    			}, 500) );
+
+			});
+		});
+
+	});
+
+	function setSlector(parent, children, cw, cmarg, tw){
+		parent.css({'width': children*(cw+cmarg)+tw+cw + cmarg + "px", "padding-left" : tw/2 + "px", "padding-right": tw/2 + "px"});
+		$(".option").css({"height": cw +"px", "width": cw +"px", "margin-right": cmarg +"px"});
+		console.log($(".option"));
+	}
+
+	function getScrollDest(scroller, children, cw, cmarg){
+		var cur = scroller.scrollLeft();
+		console.log("Current Position: "+cur);
+		var wid = cw+cmarg;
+		var bw = wid/2;
+		var half = cw/2;
+		for(var i = 0; i< children; i++){
+			if(i==0){
+				if(cur <= i*wid+bw+half){
+					console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+					return i*wid+half;
+				}
+			}else if(i == children-1){
+				if(cur > i*wid-bw+half){
+					console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+					return i*wid+half;
+				}
+			}else{
+				if(cur > i*wid-bw+half && cur<= i*wid+bw+half){
+					console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+					return i*wid+half;
+				}
+			}
+		}
+	}
+
+</script>
+</body>
+</html>

@@ -39,7 +39,6 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
     <meta name="description" content="">
         <meta name="author" content="Abdul Aleem Khan">
         
@@ -71,7 +70,7 @@
             }
             
             .navbar-header{
-                background-color:#43D1B9;
+                background-color:#00CCEB;
                 width:100%;
                 margin-left:0px;
                 margin-right:0px;
@@ -88,6 +87,7 @@
                 background-color:#EEEEEE;
                 font-family: Lato;
                 min-height:100%;
+                text-transform: none;
             }
             
             #hidden_menu{
@@ -128,13 +128,14 @@
             
             p{
                 color: #909090;
+                font-size: 11px;
             }
             
             a>h3{
-                 background-color:#00CCEB;
+                 background-color:#8CC63E;
             }
             a>h3:hover{
-                background-color:#017A8C;
+                background-color:#8CC63E;
             }
         </style>
     </head>
@@ -142,7 +143,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="location.html" style="position:relative;top:14px; float:left; z-index:10;">
+                    <a href="details.html" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
                     <h4 style="margin:15px; padding-left: 30px; color:white;">Description</h4>
@@ -153,9 +154,9 @@
         <div class="container text-center" style="min-height:100%;">
            <h5>Got it! Tell us about the job</h5>
         </div>
-        <textarea style="border-radius:0px;" rows="4" class="form-control" placeholder="Please describe the job in detail."></textarea>
-        <a href="#" style="">
-            <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:40px; text-align:center; color:white; line-height:40px;">NEXT</h3>
+        <textarea style="border-radius:0px;" rows="6" class="form-control" placeholder="Please describe the job in detail."></textarea>
+        <a href="time.html" style="">
+            <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:49px; text-align:center; color:white; line-height:49px;">NEXT</h3>
         </a>
         <script>
             var toggled = false;

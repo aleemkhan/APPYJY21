@@ -71,7 +71,7 @@
             }
             
             .navbar-header{
-                background-color:#43D1B9;
+                background-color:#00CCEB;
                 width:100%;
                 margin-left:0px;
                 margin-right:0px;
@@ -88,6 +88,7 @@
                 background-color:#EEEEEE;
                 font-family: Lato;
                 min-height:100%;
+                text-transform: none;
             }
             
             #hidden_menu{
@@ -128,14 +129,36 @@
             
             p{
                 color: #909090;
+                font-size: 11px;
             }
             
             a>h3{
-                 background-color:#00CCEB;
+                 background-color:#8CC63E;
             }
             a>h3:hover{
-                background-color:#017A8C;
+                background-color:#8CC63E;
             }
+            div.demo {
+                background-color:white;
+    margin: 0px;
+    padding: 0px;
+    padding-top:5px;
+    padding-bottom: 5px;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    overflow: auto;
+  }
+
+  .option{
+    display:inline-block;
+    line-height: 24px;
+    font-size: 24px;
+    text-align:center;
+  }
+  ::-webkit-scrollbar { 
+    display: none; 
+}
         </style>
     </head>
     <body>
@@ -153,9 +176,136 @@
         <div class="container text-center" style="min-height:100%;">
            <h5>Got it! Tell us about the job</h5>
         </div>
-        <input type="text" style="border-radius:0px;" class="form-control" placeholder="ZIP Code">
+        <div class="container text-center" style="min-height:100%; background-color:white; padding:10px; margin-bottom:-2px;">
+           <h4>People needed for this job.</h4>
+        </div>
+        
+         <div style="background-color:white; padding-bottom:15px;">
+
+
+<div id="circle" style="position:absolute; margin:0 auto; width:40px; height:40px; border:1px solid cyan; border-radius:50%; z-index:500;"></div>
+<div id="demo" class="demo">
+
+<div id="num" style="position:relative; top:0px;left:0px;">
+    <div class="option">1</div>
+    <div class="option">2</div>
+    <div class="option">3</div>
+    <div class="option">4</div>
+    <div class="option">5</div>
+    <div class="option">6</div>
+    <div class="option">7</div>
+    <div class="option">8</div>
+    <div class="option">9</div>
+    <div class="option" style="margin-right:0px;">10</div>
+
+</div>
+ </div>
+</div>
+<script>
+    var animateFlag = false;
+    var value_selected = 0;
+    
+
+    /*
+    function getScrollDest(e){
+        var cur = $( "#demo" ).scrollLeft( );
+        var st = 20;
+        var bw = 80;
+        var half = 20;
+        console.log((bw+half) +":"+ (2*bw-half));
+        if(cur < bw-half){
+            return st+0*bw;
+        }else if(cur >= bw-half && cur < bw+half){
+            return st+1*bw;
+        }else if(cur >= 2*bw-half && cur < 2*bw+half){
+            return st+2*bw;
+        }else if(cur >= 3*bw-half && cur < 3*bw+half){
+            return st+3*bw;
+        }else if(cur >= 4*bw-half && cur < 4*bw+half){
+            return st+4*bw;
+        }else if(cur >= 5*bw-half && cur < 5*bw+half){
+            return st+5*bw;
+        }else if(cur >= 6*bw-half && cur < 6*bw+half){
+            return st+6*bw;
+        }else if(cur >= 7*bw-half && cur < 7*bw+half){
+            return st+7*bw;
+        }else if(cur >= 8*bw-half && cur < 8*bw+half){
+            return st+8*bw;
+        }else if(cur >= 9*bw-half){
+            return st+9*bw;
+        }
+    }*/
+    
+    $(document).ready(function(){
+        var a = $("#demo").width() ;
+        b=a/2-20;
+        //$("#num").css({'padding-left':a/2 +'px', 'padding-right':a/2 +'px', });
+        setSlector($("#num"), 10, 40, 50, a);
+        $("#circle").css({"left": b+"px"});
+        console.log("hello: "+b);
+
+        $( "#demo" ).scrollLeft( 20 );
+        //console.log($( "#demo" ).scrollLeft( ));
+        $(function(){
+            $("#demo").scroll(function(){
+                
+                console.log("Scroll Position: " + $( "#demo" ).scrollLeft( ));
+                clearTimeout( $.data( $("#demo"), "scrollCheck" ) );
+                        $.data( $("#demo"), "scrollCheck", setTimeout(function() {
+                        if(!animateFlag){
+                            console.log("Stopped scrolling!");
+                            var pos = getScrollDest($( "#demo" ), 10, 40, 50);
+                            $( "#demo" ).animate( {scrollLeft:pos},  {duration:200, complete: function(){
+                                console.log("ready to animate");
+
+                                clearTimeout( $.data( $("#demo"), "scrollCheck" ) );
+                                animateFlag = false;
+                            }});
+                            animateFlag = true;
+
+                        }
+                    }, 500) );
+
+            });
+        });
+
+    });
+
+    function setSlector(parent, children, cw, cmarg, tw){
+        parent.css({'width': children*(cw+cmarg)+tw+cw + cmarg + "px", "padding-left" : tw/2 + "px", "padding-right": tw/2 + "px"});
+        $(".option").css({"height": cw +"px", "width": cw +"px", "margin-right": cmarg +"px"});
+        console.log($(".option"));
+    }
+
+    function getScrollDest(scroller, children, cw, cmarg){
+        var cur = scroller.scrollLeft();
+        console.log("Current Position: "+cur);
+        var wid = cw+cmarg;
+        var bw = wid/2;
+        var half = cw/2;
+        for(var i = 0; i< children; i++){
+            if(i==0){
+                if(cur <= i*wid+bw+half){
+                    console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+                    return i*wid+half;
+                }
+            }else if(i == children-1){
+                if(cur > i*wid-bw+half){
+                    console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+                    return i*wid+half;
+                }
+            }else{
+                if(cur > i*wid-bw+half && cur<= i*wid+bw+half){
+                    console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+                    return i*wid+half;
+                }
+            }
+        }
+    }
+
+</script>
         <a href="description.html" style="">
-            <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:50px; text-align:center; color:white; line-height:40px;">NEXT</h3>
+            <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:49px; text-align:center; color:white; line-height:49px;">NEXT</h3>
         </a>
         <script>
             var toggled = false;
