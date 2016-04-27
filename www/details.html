@@ -152,9 +152,8 @@
 
   .option{
     display:inline-block;
-    line-height: 24px;
-    font-size: 24px;
     text-align:center;
+    line-height: 1.9;
   }
   ::-webkit-scrollbar { 
     display: none; 
@@ -177,35 +176,62 @@
            <h5>Got it! Tell us about the job</h5>
         </div>
         <div class="container text-center" style="min-height:100%; background-color:white; padding:10px; margin-bottom:-2px;">
-           <h4>People needed for this job.</h4>
+           <h4>Bedrooms</h4>
         </div>
         
          <div style="background-color:white; padding-bottom:15px;">
 
 
-<div id="circle" style="position:absolute; margin:0 auto; width:40px; height:40px; border:1px solid cyan; border-radius:50%; z-index:500;"></div>
-<div id="demo" class="demo">
+            <div id="circle" style="position:absolute; margin:0 auto; width:38px; height:38px; border:2px solid #00CCEB; border-radius:50%; z-index:500;"></div>
+            <div id="demo" class="demo">
+                <div id="num" style="position:relative; top:0px;left:0px;">
+                    <div class="option">0</div>
+                    <div class="option">1</div>
+                    <div class="option">2</div>
+                    <div class="option">3</div>
+                    <div class="option">4</div>
+                    <div class="option">5</div>
+                    <div class="option">6</div>
+                    <div class="option">7</div>
+                    <div class="option">8</div>
+                    <div class="option">9</div>
+                    <div class="option" style="margin-right:0px;">10</div>
+                </div>
+             </div>
+        </div>
 
-<div id="num" style="position:relative; top:0px;left:0px;">
-    <div class="option">1</div>
-    <div class="option">2</div>
-    <div class="option">3</div>
-    <div class="option">4</div>
-    <div class="option">5</div>
-    <div class="option">6</div>
-    <div class="option">7</div>
-    <div class="option">8</div>
-    <div class="option">9</div>
-    <div class="option" style="margin-right:0px;">10</div>
+        <div class="container text-center" style="min-height:100%; background-color:white; padding:10px; margin-bottom:-2px;">
+           <h4>Bathrooms</h4>
+        </div>
+        
+         <div style="background-color:white; padding-bottom:15px;">
 
-</div>
- </div>
-</div>
+
+            <div id="circle1" style="position:absolute; margin:0 auto; width:38px; height:38px; border:2px solid #00CCEB; border-radius:50%; z-index:500;"></div>
+            <div id="demo1" class="demo">
+                <div id="num1" style="position:relative; top:0px;left:0px;">
+                    <div class="option">0</div>
+                    <div class="option">1</div>
+                    <div class="option">2</div>
+                    <div class="option">3</div>
+                    <div class="option">4</div>
+                    <div class="option">5</div>
+                    <div class="option">6</div>
+                    <div class="option">7</div>
+                    <div class="option">8</div>
+                    <div class="option">9</div>
+                    <div class="option" style="margin-right:0px;">10</div>
+                </div>
+             </div>
+        </div>
+
 <script>
     var animateFlag = false;
     var value_selected = 0;
-    
-
+    var hash = "";
+    var bedrooms = 0;
+    var bathrooms = 0;
+    var selection = 0;
     /*
     function getScrollDest(e){
         var cur = $( "#demo" ).scrollLeft( );
@@ -237,10 +263,12 @@
     }*/
     
     $(document).ready(function(){
+        hash = window.location.hash.substr(1);
+        console.log(hash);
         var a = $("#demo").width() ;
         b=a/2-20;
         //$("#num").css({'padding-left':a/2 +'px', 'padding-right':a/2 +'px', });
-        setSlector($("#num"), 10, 40, 50, a);
+        setSlector($("#num"), 11, 40, 0, a);
         $("#circle").css({"left": b+"px"});
         console.log("hello: "+b);
 
@@ -254,8 +282,10 @@
                         $.data( $("#demo"), "scrollCheck", setTimeout(function() {
                         if(!animateFlag){
                             console.log("Stopped scrolling!");
-                            var pos = getScrollDest($( "#demo" ), 10, 40, 50);
-                            $( "#demo" ).animate( {scrollLeft:pos},  {duration:200, complete: function(){
+                            var pos = getScrollDest($( "#demo" ), 11, 40, 0);
+                            bedrooms = selection;
+                            $("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
+                            $( "#demo" ).animate( {scrollLeft:pos},  {duration:100, complete: function(){
                                 console.log("ready to animate");
 
                                 clearTimeout( $.data( $("#demo"), "scrollCheck" ) );
@@ -268,6 +298,36 @@
 
             });
         });
+        setSlector($("#num1"), 11, 40, 0, a);
+        $( "#demo1" ).scrollLeft( 20 );
+
+        $("#circle1").css({"left": b+"px"});
+        //console.log($( "#demo" ).scrollLeft( ));
+        $(function(){
+            $("#demo1").scroll(function(){
+                
+                console.log("Scroll Position: " + $( "#demo1" ).scrollLeft( ));
+                clearTimeout( $.data( $("#demo1"), "scrollCheck" ) );
+                        $.data( $("#demo1"), "scrollCheck", setTimeout(function() {
+                        if(!animateFlag){
+                            console.log("Stopped scrolling!");
+                            var pos = getScrollDest($( "#demo1" ), 11, 40, 0);
+                            bathrooms = selection;
+                            $("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
+                            $( "#demo1" ).animate( {scrollLeft:pos},  {duration:100, complete: function(){
+                                console.log("ready to animate");
+
+                                clearTimeout( $.data( $("#demo1"), "scrollCheck" ) );
+                                animateFlag = false;
+                            }});
+                            animateFlag = true;
+
+                        }
+                    }, 500) );
+
+            });
+        });
+
 
     });
 
@@ -283,28 +343,32 @@
         var wid = cw+cmarg;
         var bw = wid/2;
         var half = cw/2;
+        var err = 3;
         for(var i = 0; i< children; i++){
             if(i==0){
                 if(cur <= i*wid+bw+half){
                     console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
+                    selection = i;
                     return i*wid+half;
                 }
             }else if(i == children-1){
-                if(cur > i*wid-bw+half){
-                    console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
-                    return i*wid+half;
+                if(cur > i*(wid+err)-bw+half){
+                    console.log("PositionX = " + (i*(wid+err)+half) + " Box # "+ (i+1));
+                    selection = i;
+                    return i*(wid+err)+half;
                 }
             }else{
-                if(cur > i*wid-bw+half && cur<= i*wid+bw+half){
-                    console.log("PositionX = " + (i*wid+half) + " Box # "+ (i+1));
-                    return i*wid+half;
+                if(cur > i*(wid+err)-bw+half && cur<= i*(wid+err)+bw+half){
+                    console.log("PositionX = " + (i*(wid+err)+half) + " Box # "+ (i+1));
+                    selection = i;
+                    return i*(wid+err)+half;
                 }
             }
         }
     }
 
 </script>
-        <a href="description.html" style="">
+        <a id="nextbtn" href="description.html" style="">
             <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:49px; text-align:center; color:white; line-height:49px;">NEXT</h3>
         </a>
         <script>
