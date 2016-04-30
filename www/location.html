@@ -48,6 +48,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIQmJFeLUBsAQYB8ArKZYbbDIgQNCBetw"></script>
         <style>
@@ -155,8 +156,8 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="index.html" style="position:relative;top:14px; float:left; z-index:10;">
-                        <img style="height:20px; width:20px;" src="img/back-icon.png" />
+                    <a id="back" href="home.html" style="position:relative;top:14px; float:left; z-index:10;">
+                        <img style="height:22px; width:22px;" src="img/back-icon.png" />
                     </a>
                     <h4 style="margin:15px; padding-left: 30px; color:white;">Location</h4>
                 </div>
@@ -301,22 +302,89 @@
                     finalLocation = marker.getPosition();
                     console.log(finalLocation);
                     console.log("set Location"+ finalLocation.lat());
-                    hash+= "&lat="+finalLocation.lat() + "&lng" + finalLocation.lng();
-                    $("#nextbtn").attr("href", "details.html#"+hash);
+                    var h = hash + "&lat="+finalLocation.lat() + "&lng" + finalLocation.lng();
+                    sdb("latitude", finalLocation.lat());
+                    sdb("longitude", finalLocation.lng());
+                    //gdb("nextpage");
                 }
                 //&callback=initialize
 
                 $(document).ready(function(){
                     hash = window.location.hash.substr(1);
+                    var aaa = hash.split("=");
+                    if(aaa.length==2){
+                        sdb("request", aaa[1]);
+                    }
+
                     console.log(hash);
+                    $("#back").attr("href", gdb("back"));
+
+                    switch(gdb("request")){
+                        case "HOME_CLEANER":
+                            $("#nextbtn").attr("href", "details.html");
+                        break;
+                        case "HANGING_ITEMS":
+
+                            $("#nextbtn").attr("href", "details_hanging_item.html");
+                        break;
+                        case "AC_INSTALLATION":
+                            $("#nextbtn").attr("href", "details_ac_installations.html");
+
+                        break;
+                        case "FURNITURE_ASSEMBLY":
+                            $("#nextbtn").attr("href", "details_furniture_assembly.html");
+
+                        break;
+                        case "MOVING_HELP":
+                            $("#nextbtn").attr("href", "details_moving_help.html");
+
+                        break;
+                        case "DRAINS":
+                            $("#nextbtn").attr("href", "details_drains.html");
+
+                        break;
+                        case "FAUCETS":
+                            $("#nextbtn").attr("href", "details_faucets.html");
+
+                        break;
+                        case "TOILETS":
+                            $("#nextbtn").attr("href", "details_toilets.html");
+
+                        break;
+                        case "GARBAGE_DISPOSAL":
+                            $("#nextbtn").attr("href", "details_garbage_disposal.html");
+
+                        break;
+                        case "LIGHTING":
+                            $("#nextbtn").attr("href", "details_lighting.html");
+
+                        break;
+                        case "FANS":
+                            $("#nextbtn").attr("href", "details_fans.html");
+
+                        break;
+                        case "SWITCHES":
+                            $("#nextbtn").attr("href", "details_switches.html");
+
+                        break;
+                        case "SOMETHING_ELSE":
+                            $("#nextbtn").attr("href", "details_something_else.html");
+
+                        break;
+                        default:
+                        break;
+                        
+                    }
                 });
+                
+
             </script>
 
         </div>
         <a id="nextbtn" href="details.html" style="">
             <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:49px; text-align:center; color:white; line-height:49px;">NEXT</h3>
         </a>
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();

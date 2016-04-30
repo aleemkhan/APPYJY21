@@ -47,6 +47,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
         <style>
             @font-face {
                 font-family: Lato;
@@ -155,10 +156,10 @@
     <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="time.html" style="position:relative;top:14px; float:left; z-index:10;">
+                    <a href="contact.html" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
-                    <h4 style="margin:15px; padding-left: 30px; color:white;">Contact</h4>
+                    <h4 style="margin:15px; padding-left: 30px; color:white;">How often?</h4>
                 </div>
             </div>
         </nav>
@@ -177,7 +178,7 @@
                     <small>SAVE 28%</small>
                 </div>
             </div>
-            <div onclick="select(this, 2);" class="row" style="padding-top:5px; padding-bottom:5px; border-bottom:1px solid silver;">
+            <div onclick="select(this, 2);" id="sel" class="row" style="padding-top:5px; padding-bottom:5px; border-bottom:1px solid silver;">
                 <div class="col-xs-3">
                     <div id="circle1" style=" ">
                         <span class="glyphicon glyphicon-ok"></span>
@@ -232,15 +233,17 @@
             $( document ).ready(function() {
                 hash = window.location.hash.substr(1);
                 console.log(hash);
-
+                sdb("pricing", 2);
+                select($("#sel")[0], 2);
             });
 
             var selected = "";
             function select(e,a){
                 price = a;
 
-                $("#nextbtn").attr("href", "address.html#"+hash+"&pricing="+ price);
-                console.log(e[0]);
+                //$("#nextbtn").attr("href", "address.html#"+hash+"&pricing="+ price);
+                sdb("pricing", price);
+                console.log(e);
 
                 if(selected != ""){
                     selected.setAttribute("class","row");

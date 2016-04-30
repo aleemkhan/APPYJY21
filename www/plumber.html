@@ -39,8 +39,7 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
-    <meta name="description" content="">
+        <meta name="description" content="">
         <meta name="author" content="Abdul Aleem Khan">
         
         <title>Handy</title>
@@ -48,6 +47,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
         <style>
             @font-face {
                 font-family: Lato;
@@ -56,6 +56,7 @@
             .service_header{
                 margin:0px;
                 margin-top:2px;
+                line-height: 1.5;
             }
             .container{
                 background-color:#EEEEEE;
@@ -127,7 +128,9 @@
             
             p{
                 color: #909090;
-                font-size: 11px;
+                font-size: 14px;
+                line-height: 1.5;
+                margin:0px;
             }
         </style>
     </head>
@@ -135,14 +138,14 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="index.html" style="position:relative;top:9px;left:0px;">
-                        <img style="height:30px; width:25px;" src="img/back-icon.png" />
+                    <a href="home.html" style="position:relative;top:14px;left:0px;">
+                        <img style="height:22px; width:22px;" src="img/back-icon.png" />
                     </a>
                     <br><br>
-                    <h6 class="text-center muted" style="position:relative; color:white; margin:0px; padding:0px; top:9px;">
-                        Plumber
+                    <h6 class="text-center" style="position:relative; color:white; margin:0px; padding:0px; top:5px; line-height:1.5; opacity:0.5;">
+                        PLUMBER
                     </h6>
-                    <h4 class="text-center" style="color:white; padding:20px; padding-left:18%; padding-right:18%;  margin-top:0px; margin-bottom:50px;">
+                    <h4 class="text-center" style="line-height:1.5; color:white; padding:20px; padding-top:0px; padding-left:15%; padding-right:15%; margin-top:0px; margin-bottom:50px;">
                         Highly rated pros will get everything flowing again.
                     </h4>
                 </div>
@@ -157,45 +160,45 @@
                 </div>
                 
                 <div class="row" style="padding:10px;">
-                    <a href="location.html" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/darins.jpg"/>
+                    <a href="location.html#request=DRAINS" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/darins.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Drains</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Drains</h4>
                             <p>An expert will get your drains unclogged in no time.</p>
                         </div>
                     </a>
                 </div>
                 <div class="row" style="padding:10px;">
-                    <a href="#" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/faucet.jpg"/>
+                    <a href="location.html#request=FAUCETS" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/faucet.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Faucets</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Faucets</h4>
                             <p>Upgrade to the fancy nozzle, or hust stop a leak.</p>
                         </div>
                     </a>
                 </div>
                 <div class="row" style="padding:10px;">
-                    <a href="#" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/toilets.jpg"/>
+                    <a href="location.html#request=TOILETS" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/toilets.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Toilets</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Toilets</h4>
                             <p>We'll do the dirty work so that you don't have to.</p>
                         </div>
                     </a>
                 </div>
                 <div class="row" style="padding:10px;  border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
-                    <a href="#" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/garbages.jpg"/>
+                    <a href="location.html#request=GARBAGE_DISPOSAL" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/garbages.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Garbage Disposals</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Garbage Disposals</h4>
                             <p>Disposal of that mesh stainer and start with a clean sink.</p>
                         </div>
                     </a>
@@ -218,9 +221,10 @@
             var toggled = false;
             $( document ).ready(function() {
                 console.log( "ready!" );
+                sdb("back", "plumber.html");
             });
         </script>
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();

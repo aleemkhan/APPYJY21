@@ -47,6 +47,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
         <style>
             @font-face {
                 font-family: Lato;
@@ -143,7 +144,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="details.html" style="position:relative;top:14px; float:left; z-index:10;">
+                    <a href="details.html" id="back" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
                     <h4 style="margin:15px; padding-left: 30px; color:white;">Description</h4>
@@ -164,10 +165,70 @@
             $( document ).ready(function() {
                 hash = window.location.hash.substr(1);
                 console.log(hash);
+
+                switch(gdb("request")){
+                        case "HOME_CLEANER":
+                            $("#back").attr("href", "details.html");
+                        break;
+                        case "HANGING_ITEMS":
+
+                            $("#back").attr("href", "details_hanging_item.html");
+                        break;
+                        case "AC_INSTALLATION":
+                            $("#back").attr("href", "details_ac_installations.html");
+
+                        break;
+                        case "FURNITURE_ASSEMBLY":
+                            $("#back").attr("href", "details_furniture_assembly.html");
+
+                        break;
+                        case "MOVING_HELP":
+                            $("#back").attr("href", "details_moving_help.html");
+
+                        break;
+                        case "DRAINS":
+                            $("#back").attr("href", "details_drains.html");
+
+                        break;
+                        case "FAUCETS":
+                            $("#back").attr("href", "details_faucets.html");
+
+                        break;
+                        case "TOILETS":
+                            $("#back").attr("href", "details_toilets.html");
+
+                        break;
+                        case "GARBAGE_DISPOSAL":
+                            $("#back").attr("href", "details_garbage_disposal.html");
+
+                        break;
+                        case "LIGHTING":
+                            $("#back").attr("href", "details_lighting.html");
+
+                        break;
+                        case "FANS":
+                            $("#back").attr("href", "details_fans.html");
+
+                        break;
+                        case "SWITCHES":
+                            $("#back").attr("href", "details_switches.html");
+
+                        break;
+                        case "SOMETHING_ELSE":
+                            $("#back").attr("href", "details_something_else.html");
+
+                        break;
+                        default:
+                        break;
+                        
+                    }
+
             });
 
             function urlAssign(){
-                $("#nextbtn").attr("href", "time.html#"+hash+"&description="+ $("#description").val());
+                //$("#nextbtn").attr("href", "time.html#"+hash+"&description="+ $("#description").val());
+                sdb("description", $("#description").val());
+
             }
         </script>
     <script type="text/javascript" src="cordova.js"></script>

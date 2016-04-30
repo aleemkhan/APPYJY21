@@ -47,6 +47,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
         <style>
             @font-face {
                 font-family: Lato;
@@ -55,6 +56,7 @@
             .service_header{
                 margin:0px;
                 margin-top:2px;
+                line-height: 1.5;
             }
             .container{
                 background-color:#EEEEEE;
@@ -126,7 +128,9 @@
             
             p{
                 color: #909090;
-                font-size: 11px;
+                font-size: 14px;
+                line-height: 1.5;
+                margin:0px;
             }
         </style>
     </head>
@@ -134,14 +138,14 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="index.html" style="position:relative;top:9px;left:0px;">
-                        <img style="height:30px; width:25px;" src="img/back-icon.png" />
+                    <a href="home.html" style="position:relative;top:14px;left:0px;">
+                        <img style="height:22px; width:22px;" src="img/back-icon.png" />
                     </a>
                     <br><br>
-                    <h6 class="text-center muted" style="position:relative; color:white; margin:0px; padding:0px; top:9px;">
-                        Handyman
+                    <h6 class="text-center" style="position:relative; color:white; margin:0px; padding:0px; top:5px; line-height:1.5; opacity:0.5;">
+                        HANDYMAN
                     </h6>
-                    <h4 class="text-center" style="line-height:2; color:white; padding:20px; padding-left:18%; padding-right:18%; margin-top:0px; margin-bottom:50px;">
+                    <h4 class="text-center" style="line-height:1.5; color:white; padding:20px; padding-top:0px; padding-left:18%; padding-right:18%; margin-top:0px; margin-bottom:50px;">
                         Don't sweat it: our pros bring their own tools
                     </h4>
                 </div>
@@ -156,45 +160,45 @@
                 </div>
                 
                 <div class="row" style="padding:10px;">
-                    <a href="location.html" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/Hanging_items.jpg"/>
+                    <a href="location.html#request=HANGING_ITEMS" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/Hanging_items.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Hanging items</h5>
-                            <p>Place pictures. Set Shelves. Mount frames. Fix frames.</p>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Hanging items</h4>
+                            <p>Place pictures. Set Shelves. Mount mirrors. Fix frames.</p>
                         </div>
                     </a>
                 </div>
                 <div class="row" style="padding:10px;">
-                    <a href="#" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/ac.jpg"/>
+                    <a href="location.html#request=AC_INSTALLATION" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/ac.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">A/C installation</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">A/C installation</h4>
                             <p>Or uninstallation. Depends on the season, I guess.</p>
                         </div>
                     </a>
                 </div>
                 <div class="row" style="padding:10px;">
-                    <a href="#" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
-                            <img style="width:50%; height:auto;" src="img/Furniture.jpg"/>
+                    <a href="location.html#request=FURNITURE_ASSEMBLY" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
+                            <img style="width:75%; height:auto;" src="img/Furniture.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Furniture assembly</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Furniture assembly</h4>
                             <p>Is that a 3D puzzle, or sofa? Let us put it together for you.</p>
                         </div>
                     </a>
                 </div>
                 <div class="row" style="padding:10px;  border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
-                    <a href="#" style="color:black; text-decoration:none;">
-                        <div class="col-xs-4" style="padding:0px; text-align:center;">
+                    <a href="location.html#request=MOVING_HELP" style="color:black; text-decoration:none;">
+                        <div class="col-xs-3" style="padding:10px; text-align:center;">
                             <img style="width:50%; height:auto;" src="img/Moving.jpg"/>
                         </div>
-                        <div class="col-xs-7 col-xs-offset-1" style="padding:0px;">
-                            <h5 class="service_header">Moving help</h5>
+                        <div class="col-xs-8 col-xs-offset-1" style="padding:0px;">
+                            <h4 class="service_header">Moving help</h4>
                             <p>We'll bring the muscle to pack and load. Van not included.</p>
                         </div>
                     </a>
@@ -206,9 +210,10 @@
             var toggled = false;
             $( document ).ready(function() {
                 console.log( "ready!" );
+                sdb("back", "handyman.html");
             });
         </script>
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();

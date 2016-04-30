@@ -47,6 +47,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
         <style>
             @font-face {
                 font-family: Lato;
@@ -146,7 +147,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="contact.html" style="position:relative;top:14px; float:left; z-index:10;">
+                    <a href="pricing.html" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
                     <h4 style="margin:15px; padding-left: 30px; color:white;">Address</h4>
@@ -197,7 +198,7 @@
             var hours = 0;
             var toggled = false;
             $( document ).ready(function() {
-                hash = window.location.hash.substr(1);
+                /*hash = window.location.hash.substr(1);
                 console.log(hash);
                 arr1 = hash.split('&date');
                 var a = arr1[1];
@@ -234,7 +235,9 @@
                 hours += parseInt(b);
 
                 $("#showtime").append(' - '+hours+" HOURS");
-                
+                */
+                $("#showdate").html(gdb("date"));
+                $("#showtime").html(gdb("time"));
 
             });
             function bioDataAssign(){
@@ -244,7 +247,12 @@
                 countrycode = $("#countrycode").val();
                 phone = $("#phone").val();
 
-                $("#nextbtn").attr("href", "payment.html#"+hash+"&name="+ name+"&address="+ address+"&apptno="+ apptno+"&phone="+ countrycode+phone );
+                sdb("name", name);
+                sdb("address", address);
+                sdb("apptno", apptno);
+                sdb("code", countrycode);
+                sdb("phone", phone);
+                //$("#nextbtn").attr("href", "payment.html#"+hash+"&name="+ name+"&address="+ address+"&apptno="+ apptno+"&phone="+ countrycode+phone );
             }
         </script>
         </script>

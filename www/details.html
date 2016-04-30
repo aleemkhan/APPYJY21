@@ -48,6 +48,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/dbconnection.js"></script>
         <style>
             @font-face {
                 font-family: Lato;
@@ -148,6 +149,7 @@
     width: 100%;
     height: 40px;
     overflow: auto;
+    overflow-y:hidden;
   }
 
   .option{
@@ -176,10 +178,10 @@
            <h5>Got it! Tell us about the job</h5>
         </div>
         <div class="container text-center" style="min-height:100%; background-color:white; padding:10px; margin-bottom:-2px;">
-           <h4>Bedrooms</h4>
+           <h5>Bedrooms</h5>
         </div>
         
-         <div style="background-color:white; padding-bottom:15px;">
+         <div style="background-color:white; padding-bottom:15px; border-bottom:0.5px solid #EFEDED;">
 
 
             <div id="circle" style="position:absolute; margin:0 auto; width:38px; height:38px; border:2px solid #00CCEB; border-radius:50%; z-index:500;"></div>
@@ -201,10 +203,10 @@
         </div>
 
         <div class="container text-center" style="min-height:100%; background-color:white; padding:10px; margin-bottom:-2px;">
-           <h4>Bathrooms</h4>
+           <h5>Bathrooms</h5>
         </div>
         
-         <div style="background-color:white; padding-bottom:15px;">
+         <div style="background-color:white; padding-bottom:15px; border-bottom:0.5px solid #EFEDED;">
 
 
             <div id="circle1" style="position:absolute; margin:0 auto; width:38px; height:38px; border:2px solid #00CCEB; border-radius:50%; z-index:500;"></div>
@@ -284,7 +286,8 @@
                             console.log("Stopped scrolling!");
                             var pos = getScrollDest($( "#demo" ), 11, 40, 0);
                             bedrooms = selection;
-                            $("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
+                            //$("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
+                            sdb("bedrooms", bedrooms);
                             $( "#demo" ).animate( {scrollLeft:pos},  {duration:100, complete: function(){
                                 console.log("ready to animate");
 
@@ -313,7 +316,8 @@
                             console.log("Stopped scrolling!");
                             var pos = getScrollDest($( "#demo1" ), 11, 40, 0);
                             bathrooms = selection;
-                            $("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
+                            //$("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
+                            sdb("bathrooms", bathrooms);
                             $( "#demo1" ).animate( {scrollLeft:pos},  {duration:100, complete: function(){
                                 console.log("ready to animate");
 
@@ -375,9 +379,14 @@
             var toggled = false;
             $( document ).ready(function() {
                 console.log( "ready!" );
+                console.log("Got from DB: "+ gdb("request") +" : "+gdb("back"));
+                sdb("bedrooms", 0);
+                sdb("bathrooms", 0);
             });
+
+            
         </script>
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
