@@ -169,54 +169,95 @@
                 switch(gdb("request")){
                         case "HOME_CLEANER":
                             $("#back").attr("href", "details.html");
+                            var hours = 2*(parseInt(gdb("bedrooms")) + parseInt(gdb("bathrooms")));
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "HANGING_ITEMS":
-
                             $("#back").attr("href", "details_hanging_item.html");
+                            var hours = 2*(parseInt(gdb("small_item")) + parseInt(gdb("large_items")));
+                            sdb("hours", hours);
+                            if(parseInt(gdb("ladder"))>0){
+                                sdb("budget", 20);
+                            }else{
+                                sdb("budget", 0);
+                            }
                         break;
                         case "AC_INSTALLATION":
                             $("#back").attr("href", "details_ac_installations.html");
-
+                            var hours = 2* parseInt(gdb("ac_units")) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "FURNITURE_ASSEMBLY":
                             $("#back").attr("href", "details_furniture_assembly.html");
-
+                            var hours = 2*(parseInt(gdb("small_items")) + parseInt(gdb("medium_items")) +parseInt(gdb("large_items")) + parseInt(gdb("extra_large_items")));
+                            sdb("hours", hours);
+                            sdb("budget", 0); 
                         break;
                         case "MOVING_HELP":
                             $("#back").attr("href", "details_moving_help.html");
-
+                            var hours =  parseInt(gdb("hours"))*parseInt(gdb("professionals"));
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "DRAINS":
                             $("#back").attr("href", "details_drains.html");
-
+                            var hours = 2* parseInt(gdb("drains")) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "FAUCETS":
                             $("#back").attr("href", "details_faucets.html");
-
+                            var hours = 2* (parseInt(gdb("faucets")) + parseInt(gdb("shower_heads"))) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "TOILETS":
                             $("#back").attr("href", "details_toilets.html");
-
+                            var hours = 2*(parseInt(gdb("flush_repairs")) + parseInt(gdb("unclog_toilets"))) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "GARBAGE_DISPOSAL":
                             $("#back").attr("href", "details_garbage_disposal.html");
-
+                            var hours = 2*(parseInt(gdb("disposals"))) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "LIGHTING":
                             $("#back").attr("href", "details_lighting.html");
-
+                            var hours = 2*(parseInt(gdb("change_bulbs")) + parseInt(gdb("new_lights"))) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
+                            if(parseInt(gdb("ladder"))>0){
+                                sdb("budget", 20);
+                            }
+                            if(parseInt(gdb("fixtures"))>0){
+                                sdb("budget", 20);
+                            }
+                            if(parseInt(gdb("ladder"))>0 && parseInt(gdb("fixtures"))>0){
+                                sdb("budget", 40);
+                            }
                         break;
                         case "FANS":
                             $("#back").attr("href", "details_fans.html");
-
+                            var hours = 2*(parseInt(gdb("ceiling_fans")) + parseInt(gdb("bathroom_fans"))) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
+                            if(parseInt(gdb("ladder"))>0){
+                                sdb("budget", 20);
+                            }
                         break;
                         case "SWITCHES":
                             $("#back").attr("href", "details_switches.html");
-
+                            var hours = 2*(parseInt(gdb("outlets")) + parseInt(gdb("switches"))) ;
+                            sdb("hours", hours);
+                            sdb("budget", 0);
                         break;
                         case "SOMETHING_ELSE":
                             $("#back").attr("href", "details_something_else.html");
-
+                            
                         break;
                         default:
                         break;

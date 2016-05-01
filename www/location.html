@@ -192,7 +192,7 @@
                             geocodeAddress(address, geocoder, map);
                         }
                     });
-                    var address = "New York";
+                    var address = "Kindom of Saudia Arabia";
                     geocodeAddress(address, geocoder, map);
                     google.maps.event.addListener(map, 'click', function(event) {
 
@@ -260,9 +260,12 @@
                   marker.setMap(map);
                   map.panTo(marker.getPosition());
                 }
+                
+                var j1;
+                var j2;
+                var j3;
                 function helloworld(e){
 
-                    console.log("Hello World");
                     console.log(e.latLng.lat());
                     map.panTo(marker.getPosition());
                     geocoder.geocode(
@@ -271,8 +274,10 @@
                             if (status == google.maps.GeocoderStatus.OK) {
                                     if (results[0]) {
                                         var add= results[0].formatted_address ;
-                                        var  value=add.split(",");
-
+                                        var value=add.split(",");
+                                        j1 = add;
+                                        j2 = value;
+                                        j3 = results;
                                         count=value.length;
                                         var addr="";
                                         for(var i=0; i < count; i++){
@@ -281,7 +286,14 @@
                                                 addr+=", ";
                                         }
                                         console.log(value);
-
+                                        var country = results[results.length-1].formatted_address;
+                                        var state = results[results.length-2].formatted_address.split(",")[0];
+                                        var city = results[results.length-3].formatted_address.split(",")[0];
+                                        
+                                        console.log("City: "+city+" - State: "+ state + " - Country: "+country);
+                                        sdb('city', city);
+                                        sdb('state', state);
+                                        sdb('country', country);
                                     document.getElementById('info').innerHTML = "Location: "+ addr;
                                     }
                                     else  {
@@ -301,7 +313,7 @@
                 function setLocation(){
                     finalLocation = marker.getPosition();
                     console.log(finalLocation);
-                    console.log("set Location"+ finalLocation.lat());
+                    console.log("set Location: "+ finalLocation.lat());
                     var h = hash + "&lat="+finalLocation.lat() + "&lng" + finalLocation.lng();
                     sdb("latitude", finalLocation.lat());
                     sdb("longitude", finalLocation.lng());
@@ -322,54 +334,55 @@
                     switch(gdb("request")){
                         case "HOME_CLEANER":
                             $("#nextbtn").attr("href", "details.html");
+                            sdb("item_number", 1);
                         break;
                         case "HANGING_ITEMS":
-
                             $("#nextbtn").attr("href", "details_hanging_item.html");
+                            sdb("item_number", 2);
                         break;
                         case "AC_INSTALLATION":
                             $("#nextbtn").attr("href", "details_ac_installations.html");
-
+                            sdb("item_number", 3);
                         break;
                         case "FURNITURE_ASSEMBLY":
                             $("#nextbtn").attr("href", "details_furniture_assembly.html");
-
+                            sdb("item_number", 4);
                         break;
                         case "MOVING_HELP":
                             $("#nextbtn").attr("href", "details_moving_help.html");
-
+                            sdb("item_number", 5);
                         break;
                         case "DRAINS":
                             $("#nextbtn").attr("href", "details_drains.html");
-
+                            sdb("item_number", 6);
                         break;
                         case "FAUCETS":
                             $("#nextbtn").attr("href", "details_faucets.html");
-
+                            sdb("item_number", 7);
                         break;
                         case "TOILETS":
                             $("#nextbtn").attr("href", "details_toilets.html");
-
+                            sdb("item_number", 8);
                         break;
                         case "GARBAGE_DISPOSAL":
                             $("#nextbtn").attr("href", "details_garbage_disposal.html");
-
+                            sdb("item_number", 9);
                         break;
                         case "LIGHTING":
                             $("#nextbtn").attr("href", "details_lighting.html");
-
+                            sdb("item_number", 10);
                         break;
                         case "FANS":
                             $("#nextbtn").attr("href", "details_fans.html");
-
+                            sdb("item_number", 11);
                         break;
                         case "SWITCHES":
                             $("#nextbtn").attr("href", "details_switches.html");
-
+                            sdb("item_number", 12);
                         break;
                         case "SOMETHING_ELSE":
                             $("#nextbtn").attr("href", "details_something_else.html");
-
+                            sdb("item_number", 13);
                         break;
                         default:
                         break;

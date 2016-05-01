@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/dbconnection.js"></script>
+    </head>
+    <body>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="luminite22-facilitator@gmail.com">
+            <input type="hidden" name="item_name" value="hat">
+            <input type="hidden" name="item_number" value="123">
+            <input type="hidden" name="amount" value="15.00">
+            <input type="hidden" name="first_name" value="John">
+            <input type="hidden" name="last_name" value="Doe">
+            <input type="hidden" name="address1" value="9 Elm Street">
+            <input type="hidden" name="address2" value="Apt 5">
+            <input type="hidden" name="city" value="Berwyn">
+            <input type="hidden" name="state" value="PA">
+            <input type="hidden" name="country" value="US">
+            <input type="hidden" name="night_phone_a" value="">
+            <input type="hidden" name="night_phone_b" value="">
+            <input type="hidden" name="night_phone_c" value="">
+            <input type="hidden" name="landing_page" value="Billing" />
+            <input type="hidden" name="email" value="">
+            <input type="submit" name="submit" value="Make Payment">
+        </form>
+        <script>
+            $(document).ready(function(){
+                $("input[name='item_name']").val(gdb('request'));
+                $("input[name='item_number']").val(gdb('item_number'));
+                $("input[name='first_name']").val(gdb('name'));
+                $("input[name='last_name']").val("");
+                $("input[name='email']").val(gdb('email'));
+                $("input[name='city']").val(gdb('city'));
+                $("input[name='state']").val(gdb('state'));
+                $("input[name='country']").val(gdb('country'));
+                $("input[name='address1']").val(gdb('address'));
+                $("input[name='address2']").val(gdb('apptno'));
+                $("input[name='amount']").val(gdb('final_budget'));
+                $("input[name='night_phone_a']").val(gdb('code'));
+                $("input[name='night_phone_b']").val(gdb('phone'));
+            });
+        </script>
+    </body>
+</html>

@@ -211,7 +211,7 @@
          <div style="background-color:white; padding-bottom:15px; border-bottom:0.5px solid #EFEDED;">
 
 
-            <div id="circle2" style="position:absolute; margin:0 auto; width:150px; height:38px; border:2px solid #00CCEB; border-radius:35%; z-index:500;"></div>
+            <div id="circle2" style="position:absolute; margin:0 auto; width:150px; height:38px; border:2px solid #00CCEB; border-radius:19px; z-index:500;"></div>
             <div id="demo2" class="demo">
                 <div id="num2" style="position:relative; top:0px;left:0px;">
                     <div class="option option3">New Installation</div>
@@ -228,7 +228,7 @@
          <div style="background-color:white; padding-bottom:15px; border-bottom:0.5px solid #EFEDED;">
 
 
-            <div id="circle1" style="position:absolute; margin:0 auto; width:60px; height:38px; border:2px solid #00CCEB; border-radius:35%; z-index:500;"></div>
+            <div id="circle1" style="position:absolute; margin:0 auto; width:60px; height:38px; border:2px solid #00CCEB; border-radius:19px; z-index:500;"></div>
             <div id="demo1" class="demo">
                 <div id="num1" style="position:relative; top:0px;left:0px;">
                     <div class="option option2">No</div>
@@ -244,7 +244,7 @@
          <div style="background-color:white; padding-bottom:15px; border-bottom:0.5px solid #EFEDED;">
 
 
-            <div id="circle3" style="position:absolute; margin:0 auto; width:60px; height:38px; border:2px solid #00CCEB; border-radius:35%; z-index:500;"></div>
+            <div id="circle3" style="position:absolute; margin:0 auto; width:60px; height:38px; border:2px solid #00CCEB; border-radius:19px; z-index:500;"></div>
             <div id="demo3" class="demo">
                 <div id="num3" style="position:relative; top:0px;left:0px;">
                     <div class="option option4">No</div>
@@ -329,10 +329,10 @@
             });
         });
 
-        setSlector($("#num1"), 2, 60, 0, a, 2);
+        setSlector($("#num1"), 2, 60, 20, a, 2);
         $( "#demo1" ).scrollLeft( 30 );
 
-        $("#circle1").css({"left": b+"px"});
+        $("#circle1").css({"left": a/2-30 +"px"});
         //console.log($( "#demo" ).scrollLeft( ));
         $(function(){
             $("#demo1").scroll(function(){
@@ -342,7 +342,7 @@
                         $.data( $("#demo1"), "scrollCheck", setTimeout(function() {
                         if(!animateFlag){
                             console.log("Stopped scrolling!");
-                            var pos = getScrollDest($( "#demo1" ), 2, 60, 0);
+                            var pos = getScrollDest($( "#demo1" ), 2, 60, 20);
                             //bathrooms = selection;
                             //$("#nextbtn").attr("href", "description.html#"+hash+"&bedrooms="+bedrooms+"&bathrooms="+bathrooms);
                             sdb("new_disposal", selection);
