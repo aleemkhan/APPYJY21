@@ -292,7 +292,7 @@
                 $.ajax({
                         type: 'GET',
                         data: {'request': request, 'email':email, 'job_request': job_request, 'lat':lat, 'lng':lng, 'details':details, 'description':description, 'date': date, 'time': time, 'hours':hours, 'frequency':frequency, 'price':price, 'city':city, 'country': country},
-                        url: "http://localhost/YJYVendor/www/server.php",
+                        url: "http://jackbluck.com.cp-in-11.webhostbox.net/yjyapp/server.php",
                         dataType: 'text',
                         success: function(data){
 
@@ -307,7 +307,7 @@
                                 sdb("item_number", data.DATA);
                                 $("input[name='item_number']").val(gdb('item_number'));
 
-                                $("input[name='return']").val("http://localhost/YJYVendor/www/server.php?request=PAYMENT&jobid="+data.DATA);
+                                $("input[name='return']").val("http://jackbluck.com.cp-in-11.webhostbox.net/yjyapp/server.php?request=PAYMENT&jobid="+data.DATA);
                                 $("#paybtn").css({"display":"inherit"});
                                 //submitform();
                             }else{

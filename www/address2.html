@@ -210,7 +210,7 @@
                     $.ajax({
                         type: 'GET',
                         data: {'request': 'SAVE_INFO', 'email' : email, 'fname' : fname, 'lname': lname, 'address' : address, 'apartment': apartment, 'phone': phone, 'code':code},
-                        url: "server.php",
+                        url: "http://jackbluck.com.cp-in-11.webhostbox.net/yjyapp/server.php",
                         dataType: 'text',
                         success: function(data){
                             data = JSON.parse(data);
