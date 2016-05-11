@@ -157,25 +157,22 @@
                     <a href="description.html" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
-                    <h4 style="margin:15px; padding-left: 30px; color:white;">Time</h4>
+                    <h4 style="margin:15px; padding-left: 30px; color:white;">Time and date</h4>
                 </div>
             </div>
         </nav>
 
-        <div class="container" style="background-color:white; border-bottom:1px solid silver;">
-            <div class="form-group" >
-                <label for="date">Date</label>
-                <input onchange = "dateAssign()" type="text" class="form-control datepicker" name="date" id="date" placeholder="Tap to select date" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px; background-color:white;">
-            </div>    
+        <div class="container" style="">
+            <input onchange = "dateAssign()" type="text" class="form-control datepicker" name="date" id="date" placeholder="Tap to select date" style="margin-top:100px; border-radius:0px; box-shadow:none; height:49px; background-color:white;">
+                
             <div id="container"></div>
                 
-            <div class="form-group">
-                <label for="time">Time</label>
-                <input onchange="timeAssign()" type="text" class="form-control timepicker" id="time" placeholder="Tap to select time" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px; background-color:white;">
-            </div>
+            <input onchange="timeAssign()" type="text" class="form-control timepicker" id="time" placeholder="Tap to select time" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px; background-color:white;">
+            
         </div>
+        <h5 id="error" class="text-center"></h5>
 
-    <a id="nextbtn" href="contact.html" style="">
+    <a id="nextbtn" href="login.html" style="">
             <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:49px; text-align:center; color:white; line-height:49px;">NEXT</h3>
         </a>
         <script>
@@ -188,11 +185,22 @@
                 console.log(hash);
             });
             function timeAssign(){
+                
+                $("#error").html("");
                 mytime = $("#time").val();
+                var myTime = mytime.split(" ");
+                var mT = myTime[0]
+                mT = parseInt(mT.split(":")[0]);
+                var am = myTime[1];
+                console.log(mT + " "+ am);
+                if((mT < 6 || mT == 12) && am == 'AM'){
+                    $("#error").html("Time should be 6:00 AM or onwards");
+                }
                 sdb("time", mytime);
             }
             function dateAssign(){
                 mydate = $("#date").val();
+
                 sdb("date", mydate);
                 //mytime = $("#time").val();
                 //$("#nextbtn").attr("href", "contact.html#"+hash+"&date="+ mydate+ "&time="+mytime);

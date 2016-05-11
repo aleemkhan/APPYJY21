@@ -156,7 +156,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="contact.html" style="position:relative;top:14px; float:left; z-index:10;">
+                    <a href="time.html" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
                     <h4 style="margin:15px; padding-left: 30px; color:white;">How often?</h4>
@@ -241,12 +241,108 @@
             var price = 0;
             var hours = 0;
             var toggled = false;
+            var details = "";
             $( document ).ready(function() {
                 hash = window.location.hash.substr(1);
                 console.log(hash);
                 $("#showdate").html(gdb("date"));
                 $("#showtime").html(gdb("time") +" - "+ gdb("hours") + "HOURS");
                 select($("#sel")[0], 2);
+                
+                switch(gdb("request")){
+                        case "HOME_CLEANER":
+                            details = "";
+                            details = {"bedrooms":gdb("bedrooms"), "bathrooms":gdb("bathrooms")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+                        break;
+                        case "HANGING_ITEMS":
+                            details = "";
+                            details = {"small_items":gdb("small_items"), "large_items":gdb("large_items"), "ladder":gdb("ladder")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+                        break;
+                        case "AC_INSTALLATION":
+                            details = "";
+                            details = {"ac_units":gdb("ac_units"), "ac_task":gdb("ac_task")};
+
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+                        break;
+                        case "FURNITURE_ASSEMBLY":
+                            details = "";
+                            details = {"small_items":gdb("small_items"), "medium_items":gdb("medium_items"), "large_items":gdb("large_items"), "extra_large_items":gdb("extra_large_items")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+                        break;
+                        case "MOVING_HELP":
+                            details = "";
+                            details = {"hours":gdb("hours"), "proffessionals":gdb("proffessionals"), "insurance_certificate": gdb("insurance_certificate")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "DRAINS":
+                            details = "";
+                            details = {"drains":gdb("drains")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "FAUCETS":
+                            details = "";
+                            details = {"faucets":gdb("faucets"), "shower_heads":gdb("shower_heads"), "faucet_task": gdb("faucet_task"), "new_faucet":gdb(new_faucet)};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "TOILETS":
+                            details = "";
+                            details = {"unclog_toilets":gdb("unclog_toilets"), "flush_repairs":gdb("flush_repairs")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "GARBAGE_DISPOSAL":
+                            details = "";
+                            details = {"disposals":gdb("disposals"), "disposal_task":gdb("disposal_task"), "new_disposal": gdb("new_disposal"), "existance":gdb("existance")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "LIGHTING":
+                            details = "";
+                            details = {"change_bulbs":gdb("change_bulbs"), "new_lights":gdb("new_lights"), "ladder":gdb("ladder"), "fixtures":gdb("fixtures")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "FANS":
+                            details = "";
+                            details = {"ceiling_fans":gdb("ceiling_fans"), "bathroom_fans":gdb("bathroom_fans"), "ladder": gdb("ladder"), "fans_task": gdb("fans_task")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "SWITCHES":
+                            details = "";
+                            details = {"outlets":gdb("outlets"), "switches":gdb("switches"), "new_outlets":gdb("new_outlets")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
+                        case "SOMETHING_ELSE":
+                            details = "";
+                            details = {"hours":gdb("hours")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+
+                        break;
+                        default:
+                        break;
+                        
+                    }
             });
 
             var selected = "";

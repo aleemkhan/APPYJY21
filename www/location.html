@@ -315,8 +315,8 @@
                     console.log(finalLocation);
                     console.log("set Location: "+ finalLocation.lat());
                     var h = hash + "&lat="+finalLocation.lat() + "&lng" + finalLocation.lng();
-                    sdb("latitude", finalLocation.lat());
-                    sdb("longitude", finalLocation.lng());
+                    sdb("lat", finalLocation.lat());
+                    sdb("lng", finalLocation.lng());
                     //gdb("nextpage");
                 }
                 //&callback=initialize

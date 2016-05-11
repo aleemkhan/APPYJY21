@@ -129,7 +129,7 @@
             
             p{
                 color: #909090;
-                font-size: 14px;
+                font-size: 11px;
             }
             
             a>h3{
@@ -150,104 +150,118 @@
                     <a href="pricing.html" style="position:relative;top:14px; float:left; z-index:10;">
                         <img style="height:20px; width:20px;" src="img/back-icon.png" />
                     </a>
-                    <h4 style="margin:15px; padding-left: 30px; color:white;">Personal info</h4>
+                    <h4 style="margin:15px; padding-left: 30px; color:white;">Address</h4>
                 </div>
             </div>
         </nav>
 
     
         <div class="container">
+            <div class="row"  style="background-color:rgba(0,0,0,0);">
+                <div class="col-xs-6" style="background-color:none;">
+                    <h4 id="showdate">Thursday, April 21</h4>
+                    <h5 id="showtime">10:00 AM - 4 HOURS</h5>
+                </div>
+                <div class="col-xs-6">
+                    <h2 id="showamount" class="text-right">$ 540</h2>
+                </div>
+            </div>
             <div>
                 <div class="row"  style="background-color:white;">
                     <div class="col-xs-7" style="padding:0px;">
-                        <input type="text"  class="form-control" id="fname" placeholder="First Name" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
+                        <input type="text" onchange="bioDataAssign()" class="form-control" id="fname" placeholder="First Name" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
                     </div>
                     <div class="col-xs-5" style="padding:0px;">
-                        <input type="text"  class="form-control" id="lname" placeholder="Last Name" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
-                    </div>
-                </div>
-                <div class="row"  style="background-color:white;">
-                    <div class="col-xs-12" style="padding:0px;">
-                        <input type="text"  class="form-control" id="email" placeholder="Email ID" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
+                        <input type="text" onchange="bioDataAssign()" class="form-control" id="lname" placeholder="Last Name" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
                     </div>
                 </div>
                 <div class="row"  style="background-color:rgba(0,0,0,0);">
                     <div class="col-xs-8" style="padding:0px;">
-                        <input type="text"  class="form-control" id="address" placeholder="Street Address" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
+                        <input type="text" onchange="bioDataAssign()" class="form-control" id="address" placeholder="Street Address" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
                     </div>
                     <div class="col-xs-4" style="padding:0px;">
-                        <input type="text"  class="form-control" id="apartment" placeholder="Apartment #" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
+                        <input type="text" onchange="bioDataAssign()" class="form-control" id="apptnum" placeholder="Apartment #" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
                     </div>
                 </div>
                 <div class="row"  style="background-color:rgba(0,0,0,0);">
                     <div class="col-xs-2"  style="padding:0px;">
-                        <input type="text"  class="form-control" id="code" placeholder="+966" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;" value="+966"/>
+                        <input type="text" onchange="bioDataAssign()" class="form-control" id="countrycode" placeholder="+1" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
                     </div>
                     <div class="col-xs-10" style="padding:0px;">
-                        <input type="text"  class="form-control" id="phone" placeholder="Phone" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
+                        <input type="text" onchange="bioDataAssign()" class="form-control" id="phone" placeholder="Phone" style="margin-top:0px; border-radius:0px; box-shadow:none; height:49px;border:0px;"/>
                     </div>
                 </div>
             </div>
-
-            <div id="error" class="text-center" style="padding:20px;"></div>
         </div>
-        <a id="nextbtn" href="#" style="">
+        <a id="nextbtn" href="payment.html" style="">
             <h3 style="position:fixed; bottom:0px; margin:0px; width:100%; height:49px; text-align:center; color:white; line-height:49px;">NEXT</h3>
         </a>
         <script>
+            var hash = "";
+            var arr1;
+            var arr2;
+            var hours = 0;
             var toggled = false;
             $( document ).ready(function() {
-                bioDataAssign();
-                $("#nextbtn").click(function(){
-                    $("#error").html('<img src="img/preloader.gif" />');
-                    var email = $("#email").val();
-                    var fname = $("#fname").val();
-                    var lname = $("#lname").val();
-                    var address = $("#address").val();
-                    var apartment = $("#apartment").val();
-                    var phone = $("#phone").val();
-                    var code = $("#code").val();
-                    $.ajax({
-                        type: 'GET',
-                        data: {'request': 'SAVE_INFO', 'email' : email, 'fname' : fname, 'lname': lname, 'address' : address, 'apartment': apartment, 'phone': phone, 'code':code},
-                        url: "server.php",
-                        dataType: 'text',
-                        success: function(data){
-                            data = JSON.parse(data);
-                            console.log(data);
-                            if(data.STATUS == "OK"){
-                                $("#error").html(data.MSG);
-                                sdb('fname', fname);
-                                sdb('lname', lname);
-                                sdb('address', address);
-                                sdb('apartment', apartment);
-                                sdb('phone', phone);
-                                sdb('code', code);
-                                window.top.location = "payment.html";
-                            }else{
-                                console.log(data.STATUS);
-                                $("#error").html(data.MSG);
+                /*hash = window.location.hash.substr(1);
+                console.log(hash);
+                arr1 = hash.split('&date');
+                var a = arr1[1];
+                a = a.split('&');
+                a = a[0];
+                a = a.split('=');
+                a = a[1];
+                console.log(a);
+                $("#showdate").html(a);
+                arr2 = hash.split('&time');
+                var b = arr2[1];
+                b = b.split('&');
+                b = b[0];
+                b = b.split('=');
+                b = b[1];
+                console.log(b);
+                $("#showtime").html(b);
 
-                            }
-                        },
-                        error: function(a, b, c){
-                            console.log("error occured. "+ b);
-                            $("#error").html("Something went wrong. Check your internet connectivity.");
-                        }
-                    });
-                });
+                arr1 = hash.split('&bedrooms');
+                var a = arr1[1];
+                a = a.split('&');
+                a = a[0];
+                a = a.split('=');
+                a = a[1];
+                hours += parseInt(a);
+                console.log(a);
+                arr2 = hash.split('&bathrooms');
+                var b = arr2[1];
+                b = b.split('&');
+                b = b[0];
+                b = b.split('=');
+                b = b[1];
+                console.log(b);
+                hours += parseInt(b);
+
+                $("#showtime").append(' - '+hours+" HOURS");
+                */
+                $("#showdate").html(gdb("date"));
+                $("#showtime").html(gdb("time") +" - "+ gdb("hours") + "HOURS");
+                $("#showamount").html("$"+gdb("final_budget"));
             });
             function bioDataAssign(){
-                $("#email").val(gdb("email"));
-                $("#fname").val(gdb("fname"));
-                $("#lname").val(gdb("lname"));
-                $("#address").val(gdb("address"));
-                $("#apartment").val(gdb("apartment"));
-                $("#code").val(gdb("code"));
-                $("#phone").val(gdb("phone"));
+                fname = $("#fname").val();
+                lname = $("#lname").val();
+                address = $("#address").val();
+                apptno = $("#apptnum").val();
+                countrycode = $("#countrycode").val();
+                phone = $("#phone").val();
 
+                sdb("fname", fname);
+                sdb("lname", lname);
+                sdb("address", address);
+                sdb("apptno", apptno);
+                sdb("code", countrycode);
+                sdb("phone", phone);
                 //$("#nextbtn").attr("href", "payment.html#"+hash+"&name="+ name+"&address="+ address+"&apptno="+ apptno+"&phone="+ countrycode+phone );
             }
+        </script>
         </script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
