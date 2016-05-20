@@ -274,6 +274,7 @@
             });
             
             function PostJob(){
+                if(gdb("pay_status") == "0"){
                 var request = "POST_JOB";
                 var email = gdb("email");
                 var job_request = gdb('request');
@@ -301,10 +302,12 @@
                             data = JSON.parse(data);
                             console.log(data);
                             if(data.STATUS == "OK"){
-                                $("#error").html(data.MSG +"<br><h4> Tracking ID: "+data.DATA+"</h4>");
+                                $("#error").html(data.MSG +"<br><h4> Tracking ID: "+data.DATA+"</h4><p>Your order has been placed successfully. Make payment to get the service.</p>");
                                 console.log(data.MSG);
                                 console.log(data.DATA);
+                                sdb("pay_status", 1);
                                 sdb("item_number", data.DATA);
+                                sdb("orderid", data.DATA);
                                 $("input[name='item_number']").val(gdb('item_number'));
 
                                 $("input[name='return']").val("http://jackbluck.com.cp-in-11.webhostbox.net/yjyapp/server.php?request=PAYMENT&jobid="+data.DATA);
@@ -321,6 +324,10 @@
                             $("#error").html("Something went wrong. Check your internet connectivity.");
                         }
                     });
+                }else{
+                    $("#error").html("This job has already been posted with job id: "+ gdb("item_number") +". Make payment if you have not made already to process this ");
+                    $("#paybtn").css({"display":"inherit"});
+                }
             }
 
             function fillForm(){
@@ -340,6 +347,7 @@
             }
             
             function submitform(){
+                $("#paybtn").css({"display":"none"});
                 $("#error").html('<img src="img/preloader.gif" /> <br> Processing order details...');
                 $("#paypalform").submit();
             }

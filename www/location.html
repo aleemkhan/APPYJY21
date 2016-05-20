@@ -201,9 +201,11 @@
                     });
                     google.maps.event.addListener(marker, 'dragend', function(event){
                         console.log('Current Lat: ' + event.latLng.lat().toFixed(3) + ' Current Lng: ' + event.latLng.lng().toFixed(3) );
-                        map.setCenter(marker.position);
+                        //map.setCenter(marker.position);
 
-                        marker.setMap(map);
+                        //marker.setMap(map);
+                        helloworld(event);
+                        addMarker(event.latLng, map);
 
                     });
                     marker = new google.maps.Marker({
@@ -227,6 +229,9 @@
                             resultsMap.fitBounds(results[0].geometry.viewport);
                             loc = results[0].geometry.location;
                             console.log(results[0].geometry.location);
+                            sdb('lat', loc.lat());
+                            sdb('lng', loc.lng());
+                            console.log("lat: "+loc.lat()+", lng: "+loc.lng());
                             addMarker(loc, map);
                             
                         } else {
