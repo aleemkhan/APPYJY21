@@ -255,6 +255,12 @@
                             sdb("hours", hours);
                             sdb("budget", 0);
                         break;
+                        case "TAXI":
+                            $("#back").attr("href", "details_taxi.html");
+                            var hours = Math.ceil(5*parseInt(gdb("distance"))/30);
+                            sdb("hours", hours);
+                            sdb("budget", 0);
+                        break;
                         case "SOMETHING_ELSE":
                             $("#back").attr("href", "details_something_else.html");
                             

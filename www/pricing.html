@@ -331,6 +331,13 @@
                             sdb("details", JSON.stringify(details));
 
                         break;
+                        case "TAXI":
+                            details = "";
+                            details = {"distance":gdb("distance")};
+                            console.log(JSON.stringify(details));
+                            sdb("details", JSON.stringify(details));
+
+                        break;
                         case "SOMETHING_ELSE":
                             details = "";
                             details = {"hours":gdb("hours")};
